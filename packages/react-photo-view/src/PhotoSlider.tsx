@@ -101,6 +101,7 @@ export default function PhotoSlider(props: IPhotoSliderProps) {
     onClose,
     afterClose,
     portalContainer,
+    preventDefault = true,
   } = props;
 
   const [state, updateState] = useSetState(initialState);
@@ -412,6 +413,7 @@ export default function PhotoSlider(props: IPhotoSliderProps) {
             onPhotoResize={handleResize}
             isActive={(currentImage && currentImage.key) === item.key}
             expose={updateState}
+            preventDefault={preventDefault}
           />
         );
       })}

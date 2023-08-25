@@ -63,6 +63,8 @@ export interface PhotoBoxProps {
   expose: (state: ExposedProperties) => void;
   // 是否在当前操作中
   isActive: boolean;
+  // 是否阻止touchmove的Scroll
+  preventDefault: boolean;
 }
 
 const initialState = {
@@ -138,6 +140,7 @@ export default function PhotoBox({
   onPhotoResize,
   isActive,
   expose,
+  preventDefault,
 }: PhotoBoxProps) {
   const [state, updateState] = useSetState(initialState);
   const initialTouchRef = useRef<TouchStartType>(0);
@@ -323,7 +326,9 @@ export default function PhotoBox({
   useEventListener(
     isTouchDevice ? 'touchmove' : undefined,
     (e) => {
-      e.preventDefault();
+      if (preventDefault) {
+        e.preventDefault();
+      }
       const position = getMultipleTouchPosition(e);
       handleMove(...position);
     },

@@ -99,6 +99,10 @@ export interface PhotoProviderBase {
    * @defaultValue document.body
    */
   portalContainer?: HTMLElement;
+  /**
+   * 是否阻止touchmove的Scroll
+   */
+  preventDefault?: boolean;
 }
 
 export type PhotoRenderParams = {
